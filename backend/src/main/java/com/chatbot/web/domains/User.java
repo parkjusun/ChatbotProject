@@ -1,6 +1,5 @@
 package com.chatbot.web.domains;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
