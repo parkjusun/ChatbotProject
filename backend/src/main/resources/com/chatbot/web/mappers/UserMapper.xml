@@ -1,0 +1,24 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chatbot.web.mappers.UserMapper">
+
+    <select id="insertUser"
+            parameterType="com.chatbot.web.domains.User">
+       insert into user (seq,userid,passwd,email,addr)
+        values (#{seq},#{userid},#{passwd},#{email},#{addr})
+    </select>
+
+    <select id="login" resultType="com.chatbot.web.domains.User"
+            parameterType="com.chatbot.web.domains.User">
+    select
+    seq seq,
+    userid userid,
+    passwd passwd,
+    email email,
+    addr addr
+    from user
+    where userid like #{userid} and passwd like #{passwd}
+    </select>
+
+</mapper>
