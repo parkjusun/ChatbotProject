@@ -55,7 +55,7 @@ for k in range(1,184):
 
         #for를 돌리는 이유는 자동차 디테일 사이트에 있는 35개의 리스트를 가져오기 위함
         #try: excpt: 는 "indexerror: list index out of range" 오류로 부터 빠져나와 진행할 수 있도록하기 위한 예외처리
-        for i in range(0,40):
+        for i in range(0,32):
             try:
                 #선택된 페이지의 정보를 detail에 넣어둔다.
                 #.replace('바꿀문자','대체되는 문자')는 지정된 문자를 다른 문자로 바꾸기 위함
