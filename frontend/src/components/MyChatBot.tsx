@@ -1,12 +1,11 @@
-import React, {Component} from "react";
+import React, {useState} from "react";
 // @ts-ignore
 import ChatBot from 'react-simple-chatbot';
-interface State {
-    name: string
-}
 
-class MyChatBot extends Component<State>{
-    public render() {
+
+const MyChatBot = () => {
+    const [name,setName] = useState({})
+
         return (
             <div>
                 <h1>챗봇</h1>
@@ -23,11 +22,21 @@ class MyChatBot extends Component<State>{
                             id: 'name',
                             // user에 true넣으면 값이 입력 된다.
                             user: true,
+                            validator: (va:string) => {
+                                setName(va)
+                                if (va === '') {
+                                    setName(va)
+                                    return 'value should be a number';
+                                }
+                                return true;
+                            },
                             trigger: '2',
                         },
                         {
                             id: '2',
-                            message: '안녕하세요. {previousValue}님, 만나서 반갑습니다.',
+                            component: (
+                                <div> '안녕하세요. {name}님, 만나서 반갑습니다.'</div>
+                            ),
                             end: true,
                         },
                     ]}
@@ -35,6 +44,6 @@ class MyChatBot extends Component<State>{
                 />
             </div>
         );
-    }
+
 }
 export default MyChatBot

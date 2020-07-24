@@ -1,4 +1,4 @@
-package com.chatbot.web.domains;
+package com.chatbot.web.user;
 
 import lombok.Getter;
 import lombok.Setter;

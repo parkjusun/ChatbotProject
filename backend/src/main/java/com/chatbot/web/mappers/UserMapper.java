@@ -1,6 +1,6 @@
 package com.chatbot.web.mappers;
 
-import com.chatbot.web.domains.User;
+import com.chatbot.web.user.User;
 import org.springframework.stereotype.Repository;
 
 @Repository

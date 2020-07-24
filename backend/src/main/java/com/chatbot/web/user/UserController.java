@@ -1,7 +1,7 @@
-package com.chatbot.web.controllers;
+package com.chatbot.web.user;
 
-import com.chatbot.web.domains.User;
-import com.chatbot.web.serviceImps.UserSevice;
+
+import com.chatbot.web.mappers.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,18 +9,19 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/user")
 public class UserController {
-    @Autowired UserSevice userSevice;
+    @Autowired
+    UserMapper userMapper;
 
 
     @GetMapping("/join")
     public boolean join(){
         User newUser = new User();
-        newUser.setUserid("c");
-        newUser.setPasswd("c");
-        newUser.setEmail("c");
-        newUser.setAddr("c");
+        newUser.setUserid("v");
+        newUser.setPasswd("v");
+        newUser.setEmail("v");
+        newUser.setAddr("v");
         System.out.println("들어온데이터:"+newUser.toString());
-        return (userSevice.join(newUser) == null)? true: false;
+        return (userMapper.insertUser(newUser) == null)? true: false;
     }
 
     @GetMapping("/login")
@@ -29,7 +30,7 @@ public class UserController {
         user.setUserid("b");
         user.setPasswd("b");
         System.out.println("들어온데이터:"+user.toString());
-        return (userSevice.login(user))? true: false;
+        return (userMapper.login(user) != null)? true: false;
     }
 
 

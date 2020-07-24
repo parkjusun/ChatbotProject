@@ -4,13 +4,13 @@
 <mapper namespace="com.chatbot.web.mappers.UserMapper">
 
     <select id="insertUser"
-            parameterType="com.chatbot.web.domains.User">
+            parameterType="com.chatbot.web.user.User">
        insert into user (seq,userid,passwd,email,addr)
         values (#{seq},#{userid},#{passwd},#{email},#{addr})
     </select>
 
-    <select id="login" resultType="com.chatbot.web.domains.User"
-            parameterType="com.chatbot.web.domains.User">
+    <select id="login" resultType="com.chatbot.web.user.User"
+            parameterType="com.chatbot.web.user.User">
     select
     seq seq,
     userid userid,
