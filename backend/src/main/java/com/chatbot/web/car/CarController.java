@@ -2,10 +2,9 @@ package com.chatbot.web.car;
 
 import com.chatbot.web.mappers.CarMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @CrossOrigin(origins = "*",allowedHeaders = "*")
 @RestController
@@ -15,9 +14,14 @@ public class CarController {
     @Autowired
     CarMapper carMapper;
 
-    @GetMapping("/carSearch")
-    public Car[] select(String carName){
-        carName = "%"+"모닝"+"%";
-        return carMapper.selectOne(carName);
+    @GetMapping("/carSearch/{carName}")
+    public Car[] select(@PathVariable String carName){
+        String car = "%"+carName+"%";
+        System.out.println(car);
+        return carMapper.selectOne(car);
+    }
+    @GetMapping("/carAll")
+    public List<Car> searchAll(){
+        return carMapper.selectAll();
     }
 }

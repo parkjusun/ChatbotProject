@@ -4,7 +4,12 @@
 <mapper namespace="com.chatbot.web.mappers.CarMapper">
     <select id="selectOne" parameterType="com.chatbot.web.car.Car"
                             resultType="com.chatbot.web.car.Car">
-        SELECT * FROM car WHERE carName  LIKE #{carName}
+        SELECT * FROM car WHERE carName And employee  LIKE #{carName}
+    </select>
+
+    <select id="selectAll" parameterType="com.chatbot.web.car.Car"
+            resultType="com.chatbot.web.car.Car">
+        SELECT * FROM car
     </select>
 
 
