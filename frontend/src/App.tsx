@@ -9,13 +9,13 @@ import './App.css';
 class App extends Component<any, any>{
   public render(){
     return  <Router>
+      <MyChatBot/>
+
       <Link to="/">홈 이동</Link><br/>
-      <Link to="/chat">챗봇 이동</Link><br/>
       <Link to="/join">회원가입 이동</Link><br/>
       <Link to="/login">로그인 이동</Link>
 
       <Route exact path='/' component={Home}/>
-      <Route exact path='/chat' component={MyChatBot}/>
       <Route exact path='/join' component={Join}/>
       <Route exact path='/login' component={Login}/>
     </Router>
