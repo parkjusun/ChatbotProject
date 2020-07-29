@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from  'axios';
-import ChatBot from 'react-simple-chatbot';
-import index from "styled-components/dist/styled-components-macro.esm";
+import ChatBot,{ Loding } from 'react-simple-chatbot';
+
 
 
 class CarSearch extends Component {
@@ -19,6 +19,7 @@ class CarSearch extends Component {
         this.state.carSearch = steps.carSearch.value;
         axios.get('http://localhost:5000/car/carSearch/'+ this.state.carSearch)
             .then( response => {
+                console.log(response.data)
                 response.data.forEach(item => {this.state.result.push({
                     carName: item.carName,
                     price: item.price,
@@ -31,12 +32,12 @@ class CarSearch extends Component {
     }
 
     render() {
-        return (
+        const {result} = this.state
+        return ((this.state.result.length !== 0)?
             <div>
-
-                {this.state.result.map(item =>{
+                {result.map((item,index) =>{
                     return(
-                        <div>
+                        <div key={index}>
                             <img src={item.img}/>
                             <h3>{item.carName}</h3>
                             <p>{item.employee}</p>
@@ -44,9 +45,9 @@ class CarSearch extends Component {
                         </div>
                     )
                 })}
-            </div>
+            </div>: <p>정보가 없습니다.</p>
 
-        );
+        )
     }
 }
 
@@ -54,6 +55,7 @@ class FareSearch extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            loading : true,
             startName: '',
             arriveName: '',
             result: [],
@@ -82,12 +84,10 @@ class FareSearch extends Component {
     }
 
     render() {
-        return (
+        return ((this.state.result.length !== 0)?
             <div>
-
-                {this.state.result.map(item =>{
-                    return(this.state.result.length != 0?
-                        <div>
+                {this.state.result.map((item,index) =>{
+                    return<div key={index} style={{textAlign: 'center', marginTop: 20}}>
                             <p>출발지: {item.startName} ==> 도착지: {item.arriveName} </p>
                             <p>1종: {item.typeOne}</p>
                             <p>2종: {item.typeTwo}</p>
@@ -95,11 +95,9 @@ class FareSearch extends Component {
                             <p>4종: {item.typeFour}</p>
                             <p>5종: {item.typeFive}</p>
                             <p>경차: {item.typeLightCar}</p>
-                        </div>: <div><p>정보가 없습니다.</p></div>)
-
-
+                        </div>
                 })}
-            </div>
+            </div>:<p>정보가 없습니다.</p>
 
         );
     }
