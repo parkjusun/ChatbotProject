@@ -17,6 +17,7 @@ class CarSearch extends Component {
     componentWillMount() {
         const { steps } = this.props;
         this.state.carSearch = steps.carSearch.value;
+
         axios.get('http://localhost:5000/car/carSearch/'+ this.state.carSearch)
             .then( response => {
                 console.log(response.data)
@@ -109,6 +110,7 @@ const MyChatBot = () => (
         headerTitle = {'서비스'}
         enableSmoothScroll = {true}
         steps={[
+            //서비스선택
             {
                 id: '1',
                 message: '원하시는 서비스를 선택해주세요.',
@@ -117,7 +119,9 @@ const MyChatBot = () => (
             {
                 id: '2',
                 options: [
+                    //차량정보 보기
                     { value: 1, label: '차량정보 보기', trigger: 'car' },
+                    //고속도로 비용
                     { value: 2, label: '고속도로 비용', trigger: 'fare' },
                 ],
             },
